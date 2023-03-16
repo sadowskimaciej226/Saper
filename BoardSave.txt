@@ -1,0 +1,3 @@
+add_compile_options(-Wall -Wextra -pedantic)
+
+add_executable(saper main.cpp Board.cpp Board.h Player.cpp Player.h GameManager.cpp GameManager.h SFMLGameMenu.cpp SFMLGameMenu.h)

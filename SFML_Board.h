@@ -22,12 +22,13 @@ class SFML_Board {
 public:
     SFML_Board(Board & board, SFMLGameMenu & menu);
     void DrawBoard();
-    void showFlag(sf::RenderWindow & window,LEVEL level, int width, int height);
-    void showBomb(sf::RenderWindow & window,LEVEL level,int width,int height);
+    void showFlag(sf::RenderWindow & window,LEVEL level, int width, int height,sf::Texture & Flag);
+    bool showBomb(sf::RenderWindow & window,LEVEL level,int width,int height,sf::Texture & Bomb);
     bool MineCount(sf::RenderWindow & window,LEVEL level,int width,int height, sf::Font & font);
-    void SetField(sf::RenderWindow & window, LEVEL level,sf::RectangleShape & field,sf::Font & font);
+    void SetField(sf::RenderWindow & window, LEVEL level,sf::RectangleShape & field,sf::Font & font,sf::Texture & Flag,sf::Texture & Bomb);
     int SFMLwidth(LEVEL level,int width);
     int SFMLheight(int height);
+
 };
 
 #endif //SAPER_SFML_BOARD_H

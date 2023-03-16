@@ -143,22 +143,22 @@ char Board::FieldInfo(int row, int col) const{
 
     if(col>=this->height || col <0) return 35;
 
-    if(plansza[width][height].isReveald && plansza[width][height].HasMine){
+    if(plansza[row][col].isReveald && plansza[row][col].HasMine){
 
         return 88;
     }
-    if(plansza[width][height].isReveald && !plansza[width][height].HasMine){
+    if(plansza[row][col].isReveald && !plansza[row][col].HasMine){
 
-        return 48+countMines(width,height);
+        return 48+countMines(row,col);
     }
-    if(plansza[width][height].HasFlag){
+    if(plansza[row][col].HasFlag){
 
         return 70;
     }
-    if(!plansza[width][height].isReveald && !plansza[width][height].HasFlag){
+    if(!plansza[row][col].isReveald && !plansza[row][col].HasFlag){
         return 95;
     }
-    if(getGameState()==Lose&&plansza[width][height].HasMine) return 77;
+    if(plansza[row][col].HasMine) return 77;
 
 
     abort();

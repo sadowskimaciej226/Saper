@@ -4,7 +4,7 @@
 
 #include "MSSFMLController.h"
 
-MSSFMLController::MSSFMLController(MinesweeperBoard & board, MSSFMLView &Sfmlboard) : b(board), b1(Sfmlboard)
+MSSFMLController::MSSFMLController(MinesweeperBoard & board, MSSFMLView &Sfmlboard) : B(board), G(Sfmlboard)
 {
 
 }
@@ -20,6 +20,10 @@ void MSSFMLController::play() {
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed)
                 window.close();
+        }
+
+
+            }
         }
 
 

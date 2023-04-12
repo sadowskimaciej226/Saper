@@ -12,15 +12,15 @@
 
 #include <SFML/Graphics.hpp>
 
-enum LEVEL {Easy,Normal,Hard,Debug};
+enum GameMode {Easy,Normal,Hard,Debug};
 
 class SFMLGameMenu {
 
 public:
 
-    LEVEL menu();
+    GameMode menu();
     void drawField(sf::RenderWindow & window, sf::Font & font);
-    LEVEL clickToChoose(sf::RenderWindow & window);
+    GameMode clickToChoose(sf::RenderWindow & window);
     void Background(sf::RenderWindow & window);
 
 };

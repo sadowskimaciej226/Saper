@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 
-MinesweeperBoard::MinesweeperBoard(SFMLGameMenu & m1) : menu(m1)
+/*MinesweeperBoard::MinesweeperBoard(SFMLGameMenu & m1) : menu(m1)
 {
 
     level=m1.menu();
@@ -11,6 +11,11 @@ MinesweeperBoard::MinesweeperBoard(SFMLGameMenu & m1) : menu(m1)
     ClearBoard();
     SetMine();
 
+}*/
+MinesweeperBoard::MinesweeperBoard(int width, int height, GameMode mode)  {
+    this->width=width;
+    this->height=height;
+    this->level=mode;
 }
 //funkcja składowa czyszcząca plansze ze wszystkich wartości
 void MinesweeperBoard::ClearBoard() {
@@ -94,7 +99,7 @@ bool MinesweeperBoard::ToggleFlag(int row, int col) {
     return true;
 }
 
-void MinesweeperBoard::SetSize(LEVEL HowHard) {
+void MinesweeperBoard::SetSize(GameMode HowHard) {
     if(HowHard==Easy){
         width=7;
         height=5;
@@ -188,9 +193,11 @@ int MinesweeperBoard::getwidth() const{
 int MinesweeperBoard::getheight() const{
     return height;
 }
-LEVEL MinesweeperBoard::getLevel() {
+GameMode MinesweeperBoard::getLevel() {
     return level;
 }
+
+
 
 
 

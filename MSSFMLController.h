@@ -10,8 +10,8 @@
 
 class MSSFMLController {
 
-    MinesweeperBoard & b;
-    MSSFMLView & b1;
+    MinesweeperBoard & B;
+    MSSFMLView & G;
 
 public:
     MSSFMLController(MinesweeperBoard & board, MSSFMLView & Sfmlboard);

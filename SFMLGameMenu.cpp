@@ -2,7 +2,7 @@
 #include "SFMLGameMenu.h"
 #include <iostream>
 
-LEVEL SFMLGameMenu::menu() {
+GameMode SFMLGameMenu::menu() {
     sf::RenderWindow window(sf::VideoMode(800,600), "Saper");
 
     sf::RectangleShape Win(sf::Vector2f(800,600));
@@ -13,7 +13,7 @@ LEVEL SFMLGameMenu::menu() {
     if(!font.loadFromFile("C:/WINDOWS/FONTS/arial.ttf"))
         abort();
 
-    LEVEL option;
+    GameMode option;
     while(window.isOpen()){
         // Event processing
         sf::Event event;
@@ -86,7 +86,7 @@ void SFMLGameMenu::drawField(sf::RenderWindow & window, sf::Font & font) {
     }
 }
 
-LEVEL SFMLGameMenu::clickToChoose(sf::RenderWindow &window) {
+GameMode SFMLGameMenu::clickToChoose(sf::RenderWindow &window) {
 
    int px=sf::Mouse::getPosition(window).x;
    int py=sf::Mouse::getPosition(window).y;

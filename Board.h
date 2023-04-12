@@ -33,20 +33,22 @@ private:
     Field plansza[100][100];
     int width;
     int height;
-    LEVEL level;
+    GameMode level;
     int MNumber;
-    SFMLGameMenu & menu;
+    //SFMLGameMenu & menu;
    // bool FirstMove=true; // na pozniej
     void ClearBoard();
-    void SetSize(LEVEL HowHard);
+    void SetSize(GameMode HowHard);
     void SetMine();
 
 
 public:
     int getwidth() const;
     int getheight() const;
-    LEVEL getLevel();
+    GameMode getLevel();
+    MinesweeperBoard(int width, int height, GameMode level);
     explicit MinesweeperBoard(SFMLGameMenu & menu); // za pomocą tych pomocniczych zmiennych ustawie w konstruktorze wielkość planszy
+
     void DebugDisplay();
     bool RevealdField(int row, int col);
     bool ToggleFlag(int row, int col);

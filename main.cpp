@@ -12,9 +12,8 @@ int main() {
     SFMLGameMenu menu;
 
 
-
-    MinesweeperBoard board(menu);
-
+    //MinesweeperBoard board(menu);
+    MinesweeperBoard board(7,5,Easy);
 
 
    cout<<board.RevealdField(0,0)<<endl;
@@ -27,9 +26,9 @@ int main() {
    //cout<<board.FieldInfo(0,0)<<endl;
 
    //  cout<<board.getGameState();
-   SFML_Board Game(board,menu);
+    MSSFMLView Game(board,menu);
     board.DebugDisplay();
-    Game.DrawBoard();
+    Game.View();
 
 return 0;
 }

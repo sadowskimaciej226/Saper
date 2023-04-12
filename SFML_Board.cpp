@@ -1,11 +1,11 @@
 #include "SFML_Board.h"
 #include <string>
-SFML_Board::SFML_Board(MinesweeperBoard & board, SFMLGameMenu & menu) : b1(board), m1(menu)
+MSSFMLView::MSSFMLView(MinesweeperBoard & board, SFMLGameMenu & menu) : b1(board), m1(menu)
 {
 
 }
 
-void SFML_Board::DrawBoard() {
+void MSSFMLView::DrawBoard() {
 
     sf::RenderWindow window(sf::VideoMode(800, 600), "Saper");
     window.setFramerateLimit(60);
@@ -57,7 +57,7 @@ void SFML_Board::DrawBoard() {
     }
 }
 //function loadsa picture of the Flag, sets Flag positions and draws it
-void SFML_Board::showFlag(sf::RenderWindow &window,LEVEL level,const int width,const int height,sf::Texture & texture) {
+void MSSFMLView::showFlag(sf::RenderWindow &window,LEVEL level,const int width,const int height,sf::Texture & texture) {
     //https://www.flaticon.com/free-icon/destination_5741911
 
 
@@ -78,7 +78,7 @@ void SFML_Board::showFlag(sf::RenderWindow &window,LEVEL level,const int width,c
 }
 
 //function loads a picture of the all Bombs if Player lose a game and draws it
-bool SFML_Board::showBomb(sf::RenderWindow &window,LEVEL level,int width,int height,sf::Texture & texture) {
+bool MSSFMLView::showBomb(sf::RenderWindow &window,LEVEL level,int width,int height,sf::Texture & texture) {
 //https://github.com/topics/minesweeper-style-game?o=asc&s=stars
 
 
@@ -98,7 +98,7 @@ bool SFML_Board::showBomb(sf::RenderWindow &window,LEVEL level,int width,int hei
         return true;
 }
 
-bool SFML_Board::MineCount(sf::RenderWindow &window, LEVEL level, int width, int height,sf::Font & font) {
+bool MSSFMLView::MineCount(sf::RenderWindow &window, LEVEL level, int width, int height,sf::Font & font) {
 
 
 
@@ -170,7 +170,7 @@ bool SFML_Board::MineCount(sf::RenderWindow &window, LEVEL level, int width, int
 }
 
 //funcion draw all field and set their position using game level, moreover function use functions show flag show bomb
-void SFML_Board::SetField(sf::RenderWindow & window, LEVEL level,sf::RectangleShape & field,sf::Font & font,sf::Texture & Flag,sf::Texture & Bomb) {
+void MSSFMLView::SetField(sf::RenderWindow & window, LEVEL level,sf::RectangleShape & field,sf::Font & font,sf::Texture & Flag,sf::Texture & Bomb) {
 
     for(int i=0;i<b1.getheight();i++){
         for(int j=0;j<b1.getwidth();j++) {
@@ -190,7 +190,7 @@ void SFML_Board::SetField(sf::RenderWindow & window, LEVEL level,sf::RectangleSh
 }
 
 //using game level funcion return width where we want to draw something
-int SFML_Board::SFMLwidth(LEVEL level,int width) {
+int MSSFMLView::SFMLwidth(LEVEL level,int width) {
     int a;
     if(level==Easy) {
         a=30*width+250;
@@ -204,6 +204,6 @@ int SFML_Board::SFMLwidth(LEVEL level,int width) {
     return a;
 }
 
-int SFML_Board::SFMLheight(int height) {
+int MSSFMLView::SFMLheight(int height) {
     return 30*height+100;
 }

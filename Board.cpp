@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 
-Board::Board(SFMLGameMenu & m1) : menu(m1)
+MinesweeperBoard::MinesweeperBoard(SFMLGameMenu & m1) : menu(m1)
 {
 
     level=m1.menu();
@@ -13,7 +13,7 @@ Board::Board(SFMLGameMenu & m1) : menu(m1)
 
 }
 //funkcja składowa czyszcząca plansze ze wszystkich wartości
-void Board::ClearBoard() {
+void MinesweeperBoard::ClearBoard() {
 
     for(int i=0;i<height;i++){
         for(int j=0;j<width;j++){
@@ -24,7 +24,7 @@ void Board::ClearBoard() {
     }
 }
 
-void Board::DebugDisplay() {
+void MinesweeperBoard::DebugDisplay() {
    for(int i=0;i<height;i++){
         for(int j=0;j<width;j++) {
             if(plansza[j][i].HasFlag){
@@ -51,7 +51,7 @@ void Board::DebugDisplay() {
 
 }
 
-void Board::SetMine() {
+void MinesweeperBoard::SetMine() {
     srand(time(nullptr));
     int a,b;
 
@@ -74,7 +74,7 @@ void Board::SetMine() {
 
 }
 
-bool Board::RevealdField(int row, int col) {
+bool MinesweeperBoard::RevealdField(int row, int col) {
 
 
     if(FieldInfo(row,col)!=95)
@@ -84,7 +84,7 @@ bool Board::RevealdField(int row, int col) {
         return true;
 }
 
-bool Board::ToggleFlag(int row, int col) {
+bool MinesweeperBoard::ToggleFlag(int row, int col) {
 
 
   if(FieldInfo(row,col)!=95)
@@ -94,7 +94,7 @@ bool Board::ToggleFlag(int row, int col) {
     return true;
 }
 
-void Board::SetSize(LEVEL HowHard) {
+void MinesweeperBoard::SetSize(LEVEL HowHard) {
     if(HowHard==Easy){
         width=7;
         height=5;
@@ -109,7 +109,7 @@ void Board::SetSize(LEVEL HowHard) {
     }
 }
 
-char Board::countMines(int row, int col) const{
+char MinesweeperBoard::countMines(int row, int col) const{
     char Counts=0;
     if(plansza[row-1][col].HasMine && row!=0){ //w lewo
         Counts++;
@@ -138,7 +138,7 @@ char Board::countMines(int row, int col) const{
     return Counts;
 }
 
-char Board::FieldInfo(int row, int col) const{
+char MinesweeperBoard::FieldInfo(int row, int col) const{
     if(row>=this->width || row<0) return 35;
 
     if(col>=this->height || col <0) return 35;
@@ -165,7 +165,7 @@ char Board::FieldInfo(int row, int col) const{
 
 }
 
-STAN Board::getGameState() const{
+STAN MinesweeperBoard::getGameState() const{
 
     int n=0;
     int freeFeild=width*height-MNumber;
@@ -182,29 +182,15 @@ STAN Board::getGameState() const{
 }
 
 
-int Board::getwidth() const{
+int MinesweeperBoard::getwidth() const{
     return width;
 }
-int Board::getheight() const{
+int MinesweeperBoard::getheight() const{
     return height;
 }
-LEVEL Board::getLevel() {
+LEVEL MinesweeperBoard::getLevel() {
     return level;
 }
-/*
-LEVEL Board::chooseLevel() {
-    int n;
-    cout<<"Choose level:\n"<<"0.Easy\n1.Normal\n2.Hard\n";
-
-    do {
-        cin>>n;
-        if (n == 0) level = Easy;
-        if (n == 1) level = Normal;
-        if (n == 2) level = Hard;
-    }while(n<0||n>2);
-    return level;
-}
-*/
 
 
 

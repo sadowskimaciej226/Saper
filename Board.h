@@ -28,7 +28,7 @@ enum STAN {Win,Lose,Running};
 struct Field {
     bool HasMine,HasFlag,isReveald;
 };
-class Board {
+class MinesweeperBoard {
 private:
     Field plansza[100][100];
     int width;
@@ -46,7 +46,7 @@ public:
     int getwidth() const;
     int getheight() const;
     LEVEL getLevel();
-    explicit Board(SFMLGameMenu & menu); // za pomocą tych pomocniczych zmiennych ustawie w konstruktorze wielkość planszy
+    explicit MinesweeperBoard(SFMLGameMenu & menu); // za pomocą tych pomocniczych zmiennych ustawie w konstruktorze wielkość planszy
     void DebugDisplay();
     bool RevealdField(int row, int col);
     bool ToggleFlag(int row, int col);

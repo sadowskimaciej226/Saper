@@ -4,7 +4,7 @@
 
 #include "MSSFMLController.h"
 
-MSSFMLController::MSSFMLController(MinesweeperBoard & board, SFML_Board &Sfmlboard) : b(board), b1(Sfmlboard)
+MSSFMLController::MSSFMLController(MinesweeperBoard & board, MSSFMLView &Sfmlboard) : b(board), b1(Sfmlboard)
 {
 
 }

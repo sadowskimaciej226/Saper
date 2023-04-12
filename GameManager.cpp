@@ -8,12 +8,12 @@
 
 using namespace std;
 
-GameManager::GameManager(MinesweeperBoard &board, Player &player) : b1(board), p1(player)
+MSTextController::MSTextController(MinesweeperBoard &board, Player &player) : b1(board), p1(player)
 {
 
 }
 
-void GameManager::Play() {
+void MSTextController::Play() {
     int n;
     b1.DebugDisplay();
     cout<<endl;

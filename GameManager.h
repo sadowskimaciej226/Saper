@@ -15,13 +15,13 @@
 #include"Player.h"
 
 
-class GameManager {
+class MSTextController {
     MinesweeperBoard & b1;
     Player & p1;
 public:
-    GameManager(MinesweeperBoard & board, Player & player);
+    MSTextController(MinesweeperBoard & board, Player & player);
     void Play();
-    void saveToFile();
+
 };
 
 

@@ -47,9 +47,10 @@ void SFML_Board::DrawBoard() {
 
         m1.Background(window);
 
-        //showFlag(window,level,0,5,Flag);
+
+
         SetField(window,level,Field,font,Flag,Bomb);
-       // showBomb(window,level,0,0);
+
 
 
         window.display();
@@ -178,6 +179,7 @@ void SFML_Board::SetField(sf::RenderWindow & window, LEVEL level,sf::RectangleSh
             window.draw(field);
             if (b1.FieldInfo(j, i) == 70)
                 showFlag(window,level,j,i, Flag);
+
 
             MineCount(window,level,j,i,font);
 

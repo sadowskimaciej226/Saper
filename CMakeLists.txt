@@ -37,5 +37,5 @@ find_package(SFML 2 COMPONENTS graphics audio REQUIRED)
 
 add_compile_options(-Wall -Wextra -pedantic)
 
-add_executable(saper main.cpp Board.cpp Board.h Player.cpp Player.h GameManager.cpp GameManager.h SFMLGameMenu.cpp SFMLGameMenu.h SFML_Board.cpp SFML_Board.h)
+add_executable(saper main.cpp Board.cpp Board.h Player.cpp Player.h GameManager.cpp GameManager.h SFMLGameMenu.cpp SFMLGameMenu.h SFML_Board.cpp SFML_Board.h MSSFMLController.cpp MSSFMLController.h)
 target_link_libraries(saper sfml-graphics sfml-audio)

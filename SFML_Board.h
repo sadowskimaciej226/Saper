@@ -16,11 +16,11 @@
  * Wyświetlenie wyniku końcowego
  */
 class SFML_Board {
-    Board & b1;
+    MinesweeperBoard & b1;
     SFMLGameMenu & m1;
 
 public:
-    SFML_Board(Board & board, SFMLGameMenu & menu);
+    SFML_Board(MinesweeperBoard & board, SFMLGameMenu & menu);
     void DrawBoard();
     void showFlag(sf::RenderWindow & window,LEVEL level, int width, int height,sf::Texture & Flag);
     bool showBomb(sf::RenderWindow & window,LEVEL level,int width,int height,sf::Texture & Bomb);

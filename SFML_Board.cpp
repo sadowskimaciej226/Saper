@@ -1,6 +1,6 @@
 #include "SFML_Board.h"
 #include <string>
-SFML_Board::SFML_Board(Board & board, SFMLGameMenu & menu) : b1(board), m1(menu)
+SFML_Board::SFML_Board(MinesweeperBoard & board, SFMLGameMenu & menu) : b1(board), m1(menu)
 {
 
 }

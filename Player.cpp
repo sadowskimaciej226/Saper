@@ -7,7 +7,7 @@
 
 using namespace std;
 
-Player::Player(Board &board) : b(board)
+Player::Player(MinesweeperBoard &board) : b(board)
 {
 
 }

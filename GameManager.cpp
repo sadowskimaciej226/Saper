@@ -8,7 +8,7 @@
 
 using namespace std;
 
-GameManager::GameManager(Board &board, Player &player) : b1(board), p1(player)
+GameManager::GameManager(MinesweeperBoard &board, Player &player) : b1(board), p1(player)
 {
 
 }

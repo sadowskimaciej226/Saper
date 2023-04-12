@@ -11,7 +11,9 @@ using namespace std;
 int main() {
     SFMLGameMenu menu;
 
-    Board board(menu);
+
+
+    MinesweeperBoard board(menu);
 
 
 

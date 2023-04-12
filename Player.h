@@ -14,10 +14,10 @@
  */
 
 class Player {
-    Board & b;
+    MinesweeperBoard & b;
 
 public:
-    explicit Player(Board & board);
+    explicit Player(MinesweeperBoard & board);
     void RevealField();
     void ToggleFlag();
 };

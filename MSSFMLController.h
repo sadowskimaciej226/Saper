@@ -10,11 +10,11 @@
 
 class MSSFMLController {
 
-    Board & b;
+    MinesweeperBoard & b;
     SFML_Board & b1;
 
 public:
-    MSSFMLController(Board & board, SFML_Board & Sfmlboard);
+    MSSFMLController(MinesweeperBoard & board, SFML_Board & Sfmlboard);
     void play();
 };
 

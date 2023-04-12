@@ -16,10 +16,10 @@
 
 
 class GameManager {
-    Board & b1;
+    MinesweeperBoard & b1;
     Player & p1;
 public:
-    GameManager(Board & board, Player & player);
+    GameManager(MinesweeperBoard & board, Player & player);
     void Play();
     void saveToFile();
 };

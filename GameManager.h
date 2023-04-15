@@ -18,6 +18,7 @@
 class MSTextController {
     MinesweeperBoard & b1;
     Player & p1;
+    void Board_view();
 public:
     MSTextController(MinesweeperBoard & board, Player & player);
     void Play();

@@ -27,7 +27,34 @@ void MSTextController::Play() {
         if (n == 2) p1.RevealField();
         b1.DebugDisplay();
     }
-    if(b1.getGameState()!=Running) cout<<"Nice you win or lost my game :)";
 
+
+}
+
+void MSTextController::Board_view() {
+
+    for(int i=0;i<b1.getheight();i++){
+        for(int j=0;j<b1.getwidth();j++) {
+            if(b1.FieldInfo(j,i)==70){
+                cout<<"[F";
+            }
+            else{
+                cout<<"[";
+            }
+            if(b1.FieldInfo(j,i)==88){
+                cout<<"X";
+            }
+            else{
+                cout<<".";
+            }
+            if(b1.FieldInfo(j,i)>=48&&b1.FieldInfo(j,i)<=56) {
+                cout << b1.FieldInfo(j,i);
+            }
+            else{
+                cout <<"]";
+            }
+        }
+        cout<<endl;
+    }
 }
 

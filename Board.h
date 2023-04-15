@@ -38,16 +38,19 @@ private:
     //SFMLGameMenu & menu;
    // bool FirstMove=true; // na pozniej
     void ClearBoard();
-    void SetSize(GameMode HowHard);
+    void SetSize(GameMode Diffculty);
     void SetMine();
+
+
 
 
 public:
     int getwidth() const;
     int getheight() const;
+
     GameMode getLevel();
     MinesweeperBoard(int width, int height, GameMode level);
-    explicit MinesweeperBoard(SFMLGameMenu & menu); // za pomocą tych pomocniczych zmiennych ustawie w konstruktorze wielkość planszy
+    explicit MinesweeperBoard(SFMLGameMenu & menu); // constructor using class SFMLGameMenu to set Board size in SFML
 
     void DebugDisplay();
     bool RevealdField(int row, int col);
@@ -56,8 +59,7 @@ public:
     char countMines(int row, int col) const;
     char FieldInfo(int row, int col) const; // funkcja bedzie zwracać znak w zależności jaki jest stan pola
     STAN getGameState() const;
-    //LEVEL chooseLevel();
-    // WAŻNE!!!! należy dodać opcje która zresetuje gre gdy przy pierwszym ruchu wylosujemy bombe
+
 };
 
 

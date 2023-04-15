@@ -16,6 +16,8 @@ MinesweeperBoard::MinesweeperBoard(int width, int height, GameMode mode)  {
     this->width=width;
     this->height=height;
     this->level=mode;
+    ClearBoard();
+    SetMine();
 }
 //funkcja składowa czyszcząca plansze ze wszystkich wartości
 void MinesweeperBoard::ClearBoard() {
@@ -60,11 +62,11 @@ void MinesweeperBoard::SetMine() {
     srand(time(nullptr));
     int a,b;
 
-    if(level==Easy) MNumber=5;
+    if(level==Easy) MNumber=0.2*width*height;
 
-    if(level==Normal) MNumber=20;
+    if(level==Normal) MNumber=0.4*width*height;
 
-    if(level==Hard) MNumber=80;
+    if(level==Hard) MNumber=0.6*width*height;
     for(int i=0;i<MNumber;i++){
         a=rand()% width;
         b=rand()% height;
@@ -99,16 +101,16 @@ bool MinesweeperBoard::ToggleFlag(int row, int col) {
     return true;
 }
 
-void MinesweeperBoard::SetSize(GameMode HowHard) {
-    if(HowHard==Easy){
+void MinesweeperBoard::SetSize(GameMode Difficulty) {
+    if(Difficulty==Easy){
         width=7;
         height=5;
     }
-    if(HowHard==Normal){
+    if(Difficulty==Normal){
         width=10;
         height=8;
     }
-    if(HowHard==Hard){
+    if(Difficulty==Hard){
         width=15;
         height=13;
     }
@@ -177,12 +179,20 @@ STAN MinesweeperBoard::getGameState() const{
 
     for(int i=0;i<height;i++){
         for(int j=0;j<width;j++) {
-            if(FieldInfo(j,i)==88) return Lose;
-            if(FieldInfo(j,i)>=48 || FieldInfo(j,i)<=57) n++;
+            if(FieldInfo(j,i)==88) {
+                cout<<"You lost :("<<endl;
+                return Lose;
+            }
+            if(plansza[j][i].isReveald && !plansza[j][i].HasMine) n++;
         }
     }
-    if(n==freeFeild) return Win;
+     cout<<"n= "<<n<<endl;
+    if(n==freeFeild){
+        cout<<"You win";
+        return Win;
+    }
     return Running;
+
 
 }
 
@@ -196,6 +206,8 @@ int MinesweeperBoard::getheight() const{
 GameMode MinesweeperBoard::getLevel() {
     return level;
 }
+
+
 
 
 

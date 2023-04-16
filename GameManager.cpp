@@ -28,7 +28,6 @@ void MSTextController::Play() {
         b1.DebugDisplay();
     }
 
-
 }
 
 void MSTextController::Board_view() {

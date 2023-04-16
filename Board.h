@@ -5,7 +5,7 @@
 #include<iostream>
 #include<cstdlib>
 #include<ctime>
-#include"SFMLGameMenu.h"
+//#include"SFMLGameMenu.h"
 //POTRZEBNE FUNKCJE:
 /*
  * funkcja ustawiająca miny : SetMine git
@@ -20,7 +20,7 @@
  * funkcja sprawdzająca czy poruszamy się po tablicy
  * coś pewnie jeszcze
  */
-
+enum GameMode {Easy,Normal,Hard,Debug};
 enum STAN {Win,Lose,Running};
 
 
@@ -50,12 +50,12 @@ public:
 
     GameMode getLevel();
     MinesweeperBoard(int width, int height, GameMode level);
-    explicit MinesweeperBoard(SFMLGameMenu & menu); // constructor using class SFMLGameMenu to set Board size in SFML
+   // explicit MinesweeperBoard(SFMLGameMenu & menu); // constructor using class SFMLGameMenu to set Board size in SFML
 
     void DebugDisplay();
     bool RevealdField(int row, int col);
     bool ToggleFlag(int row, int col);
-    //void ChangeMinePos(int width, int height); na razie nie potrzebne
+
     char countMines(int row, int col) const;
     char FieldInfo(int row, int col) const; // funkcja bedzie zwracać znak w zależności jaki jest stan pola
     STAN getGameState() const;

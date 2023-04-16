@@ -17,16 +17,18 @@
  */
 class MSSFMLView {
     MinesweeperBoard & b1;
-    SFMLGameMenu & m1;
-    void showFlag(sf::RenderWindow & window,GameMode level, int width, int height,sf::Texture & Flag);
-    bool showBomb(sf::RenderWindow & window,GameMode level,int width,int height,sf::Texture & Bomb);
-    bool MineCount(sf::RenderWindow & window,GameMode level,int width,int height, sf::Font & font);
-    void SetField(sf::RenderWindow & window, GameMode level,sf::RectangleShape & field,sf::Font & font,sf::Texture & Flag,sf::Texture & Bomb);
-    int SFMLwidth(GameMode level,int width);
-    int SFMLheight(int height);
+    //SFMLGameMenu & m1;
+    void showFlag(sf::RenderWindow & window, int width, int height,sf::Texture & Flag);
+    bool showBomb(sf::RenderWindow & window,int width,int height,sf::Texture & Bomb);
+    bool MineCount(sf::RenderWindow & window,int width,int height, sf::Font & font);
+    void SetField(sf::RenderWindow & window,sf::RectangleShape & field,sf::Font & font,sf::Texture & Flag,sf::Texture & Bomb);
+
+    void Draw_Background(sf::RenderWindow & win);
 public:
-    MSSFMLView(MinesweeperBoard & board, SFMLGameMenu & menu);
-    void View();
+   int Field_width(int width) const;
+   int Field_height(int height) const;
+   explicit MSSFMLView(MinesweeperBoard & board);
+    void View(sf::RenderWindow & window);
 
 
 };

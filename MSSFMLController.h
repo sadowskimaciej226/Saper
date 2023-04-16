@@ -12,7 +12,10 @@ class MSSFMLController {
 
     MinesweeperBoard & B;
     MSSFMLView & G;
-
+    int get_window_width() const;
+    int get_window_height() const;
+    int get_col_number(sf::RenderWindow & window) const;
+    int get_row_number(sf::RenderWindow & window) const;
 public:
     MSSFMLController(MinesweeperBoard & board, MSSFMLView & Sfmlboard);
     void play();

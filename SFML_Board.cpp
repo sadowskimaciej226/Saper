@@ -1,19 +1,24 @@
 #include "SFML_Board.h"
 #include <string>
-MSSFMLView::MSSFMLView(MinesweeperBoard & board, SFMLGameMenu & menu) : b1(board), m1(menu)
+MSSFMLView::MSSFMLView(MinesweeperBoard & board) : b1(board)
 {
 
 }
 
-void MSSFMLView::View() {
+void MSSFMLView::View(sf::RenderWindow & window) {
 
-    sf::RenderWindow window(sf::VideoMode(800, 600), "Saper");
-    window.setFramerateLimit(60);
+   /*sf::RenderWindow window(sf::VideoMode(800, 600), "Saper");
+    window.setFramerateLimit(60);*/
 
     sf::RectangleShape Field(sf::Vector2f(25,25));
     Field.setFillColor(sf::Color{150,150,150});
 
-    GameMode level=b1.getLevel();
+
+
+   /* sf::RectangleShape Field(sf::Vector2f(25,25));
+    Field.setFillColor(sf::Color{150,150,150});*/
+
+
 
     sf::Font font;
     if(!font.loadFromFile("C:/WINDOWS/FONTS/arial.ttf"))
@@ -33,27 +38,16 @@ void MSSFMLView::View() {
         abort();
     }
 
-    while (window.isOpen())
-    {
 
-        sf::Event event;
-        while (window.pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed)
-                window.close();
-        }
+        Draw_Background(window);
 
-        window.clear();
+        SetField(window,Field,font,Flag,Bomb);
 
-        m1.Background(window);
 
-        SetField(window,level,Field,font,Flag,Bomb);
 
-        window.display();
-    }
 }
 //function loadsa picture of the Flag, sets Flag positions and draws it
-void MSSFMLView::showFlag(sf::RenderWindow &window,GameMode level,const int width,const int height,sf::Texture & texture) {
+void MSSFMLView::showFlag(sf::RenderWindow &window,const int col,const int row,sf::Texture & texture) {
     //https://www.flaticon.com/free-icon/destination_5741911
 
 
@@ -62,8 +56,8 @@ void MSSFMLView::showFlag(sf::RenderWindow &window,GameMode level,const int widt
     sprite.setTexture(texture);
     sprite.setScale(0.05,0.05);
 
-    int a= SFMLwidth(level,width);
-    int b= SFMLheight(height);
+    int a= Field_width(col);
+    int b= Field_height(row);
 
 
 
@@ -74,7 +68,7 @@ void MSSFMLView::showFlag(sf::RenderWindow &window,GameMode level,const int widt
 }
 
 //function loads a picture of the all Bombs if Player lose a game and draws it
-bool MSSFMLView::showBomb(sf::RenderWindow &window,GameMode level,int width,int height,sf::Texture & texture) {
+bool MSSFMLView::showBomb(sf::RenderWindow &window,int width,int height,sf::Texture & texture) {
 //https://github.com/topics/minesweeper-style-game?o=asc&s=stars
 
 
@@ -84,8 +78,8 @@ bool MSSFMLView::showBomb(sf::RenderWindow &window,GameMode level,int width,int 
         sprite.setTexture(texture);
         sprite.setScale(0.3, 0.3);
 
-        int a = SFMLwidth(level, width)-18;
-        int b = SFMLheight(height)-15;
+        int a = Field_width(width)-18;
+        int b = Field_height(height)-15;
 
 
         sprite.setPosition(a, b);
@@ -94,21 +88,23 @@ bool MSSFMLView::showBomb(sf::RenderWindow &window,GameMode level,int width,int 
         return true;
 }
 
-bool MSSFMLView::MineCount(sf::RenderWindow &window, GameMode level, int width, int height,sf::Font & font) {
+bool MSSFMLView::MineCount(sf::RenderWindow &window, int width, int height,sf::Font & font) {
 
     sf::String s;
-    s=b1.FieldInfo(width,height);
+    char s1=b1.FieldInfo(height,width);
+    s=s1;
 
    sf::Text MineNum;
     MineNum.setFont(font);
 
-    int a= SFMLwidth(level,width);
-    int b= SFMLheight(height);
-    MineNum.setPosition(a+5,b);
+    int a= Field_width(width);
+    int b= Field_height(height);
+    MineNum.setPosition(a+3,b-5);
     MineNum.setCharacterSize(25);
 
-    MineNum.setFillColor(sf::Color{120,200,130});
+    MineNum.setFillColor(sf::Color{250,200,130});
     MineNum.setString(s);
+
     window.draw(MineNum);
 
     return true;
@@ -116,40 +112,45 @@ bool MSSFMLView::MineCount(sf::RenderWindow &window, GameMode level, int width, 
 }
 
 //funcion draw all field and set their position using game level, moreover function use functions show flag show bomb
-void MSSFMLView::SetField(sf::RenderWindow & window, GameMode level,sf::RectangleShape & field,sf::Font & font,sf::Texture & Flag,sf::Texture & Bomb) {
+void MSSFMLView::SetField(sf::RenderWindow & window,sf::RectangleShape & field,sf::Font & font,sf::Texture & Flag,sf::Texture & Bomb) {
 
     for(int i=0;i<b1.getheight();i++){
         for(int j=0;j<b1.getwidth();j++) {
 
-            field.setPosition(SFMLwidth(level, j), SFMLheight(i));
+            field.setPosition(Field_width( j), Field_height(i));
             window.draw(field);
-            if (b1.FieldInfo(j, i) == 70)
-                showFlag(window,level,j,i, Flag);
 
-            if (b1.FieldInfo(j, i) >=48 && b1.FieldInfo(j, i) <=56)
-            MineCount(window,level,j,i,font);
+            if (b1.FieldInfo(i, j) == 70)
+                showFlag(window,j,i, Flag);
 
-            if (b1.FieldInfo(j,i)==88)
-                showBomb(window,level,j,i,Bomb);
+            if (b1.FieldInfo(i,j)==88)
+                showBomb(window,j,i,Bomb);
+
+            if (b1.FieldInfo(i, j) >=48 && b1.FieldInfo(i, j) <=56)
+                MineCount(window,j,i,font);
         }
     }
 }
 
 //using game level, funcion return width where we want to draw something
-int MSSFMLView::SFMLwidth(GameMode level,int width) {
-    int a;
-    if(level==Easy) {
-        a=30*width+250;
-    }
-    if(level==Normal) {
-        a=30*width+200;
-    }
-    if(level==Hard) {
-        a=30*width+150;
-    }
-    return a;
+int MSSFMLView::Field_width(int width) const{
+
+    return 30*width+150;;
 }
 
-int MSSFMLView::SFMLheight(int height) {
-    return 30*height+100;
+ int MSSFMLView::Field_height(int height) const{
+    return 30*height+30;
+}
+void MSSFMLView::Draw_Background(sf::RenderWindow & window) {
+
+    sf::Texture texture;
+    if (!texture.loadFromFile("C:/Users/sadow/Downloads/free_city_of_war_background_by_qasimshoukat786_dbz3evz-fullview.jpg"))
+    {
+        std::cout<<"ERROR PROBLEM WITH LOADING BACKGROUND";
+    }
+    sf::Sprite sprite;
+    sprite.setTexture(texture);
+
+    window.draw(sprite);
+
 }

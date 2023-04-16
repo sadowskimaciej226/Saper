@@ -87,7 +87,7 @@ bool MinesweeperBoard::RevealdField(int row, int col) {
     if(FieldInfo(row,col)!=95)
         return false;
 
-    plansza[row][col].isReveald=true;
+    plansza[col][row].isReveald=true;
         return true;
 }
 
@@ -97,7 +97,7 @@ bool MinesweeperBoard::ToggleFlag(int row, int col) {
   if(FieldInfo(row,col)!=95)
       return false;
 
-    plansza[row][col].HasFlag=true;
+    plansza[col][row].HasFlag=true;
     return true;
 }
 
@@ -118,54 +118,39 @@ void MinesweeperBoard::SetSize(GameMode Difficulty) {
 
 char MinesweeperBoard::countMines(int row, int col) const{
     char Counts=0;
-    if(plansza[row-1][col].HasMine && row!=0){ //w lewo
-        Counts++;
-    }
-    if(plansza[row+1][col].HasMine && row!=width){//w prawo
-        Counts++;
-    }
-    if(plansza[row][col-1].HasMine && col!=0){//w dół
-        Counts++;
-    }
-    if(plansza[row][col+1].HasMine && col!=height){//w góre
-        Counts++;
-    }
-    if(plansza[row-1][col-1].HasMine && (row!=0 || col!=0)){//lewy dół
-        Counts++;
-    }
-    if(plansza[row-1][col+1].HasMine && (row!=0 || col!=height)){//lewa góra
-        Counts++;
-    }
-    if(plansza[row+1][col+1].HasMine && (row!=width || col!=height)){//prawa góra
-        Counts++;
-    }
-    if(plansza[row+1][col-1].HasMine && (row!=width || col!=0)){//prawy dół
-        Counts++;
-    }
+
+  if(plansza[col][row-1].HasMine && row!=0) Counts++;// spr góre
+  if(plansza[col][row+1].HasMine && row!=height) Counts++;//spr dół
+  if(plansza[col-1][row].HasMine && col!=0) Counts++;//spr lewo
+  if(plansza[col+1][row].HasMine && col!=width) Counts++;//spr prawo
+  if(plansza[col-1][row-1].HasMine && (col!=0 && row!=0)) Counts++;//spr lewa góre
+  if(plansza[col+1][row-1].HasMine && (col!=width && row!=0)) Counts++;//spr prawa góra
+  if(plansza[col-1][row+1].HasMine && (col!=0 && row!=height ))Counts++;//spr lewy dół
+  if(plansza[col+1][row+1].HasMine && (col!=width && row!=height)) Counts++;//spr prawy dół
     return Counts;
 }
 
 char MinesweeperBoard::FieldInfo(int row, int col) const{
-    if(row>=this->width || row<0) return 35;
+    if(col>=this->width || col<0) return 35;
 
-    if(col>=this->height || col <0) return 35;
+    if(row>=this->height || row <0) return 35;
 
-    if(plansza[row][col].isReveald && plansza[row][col].HasMine){
+    if(plansza[col][row].isReveald && plansza[col][row].HasMine){
 
         return 88;
     }
-    if(plansza[row][col].isReveald && !plansza[row][col].HasMine){
+    if(plansza[col][row].isReveald && !plansza[col][row].HasMine){
 
         return 48+countMines(row,col);
     }
-    if(plansza[row][col].HasFlag){
+    if(plansza[col][row].HasFlag){
 
         return 70;
     }
-    if(!plansza[row][col].isReveald && !plansza[row][col].HasFlag){
+    if(!plansza[col][row].isReveald && !plansza[col][row].HasFlag){
         return 95;
     }
-    if(plansza[row][col].HasMine) return 77;
+    if(plansza[col][row].HasMine) return 77;
 
 
     abort();
@@ -179,14 +164,14 @@ STAN MinesweeperBoard::getGameState() const{
 
     for(int i=0;i<height;i++){
         for(int j=0;j<width;j++) {
-            if(FieldInfo(j,i)==88) {
+            if(FieldInfo(i,j)==88) {
                 cout<<"You lost :("<<endl;
                 return Lose;
             }
             if(plansza[j][i].isReveald && !plansza[j][i].HasMine) n++;
         }
     }
-     cout<<"n= "<<n<<endl;
+
     if(n==freeFeild){
         cout<<"You win";
         return Win;

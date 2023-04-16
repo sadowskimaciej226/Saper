@@ -23,7 +23,7 @@ void Player::RevealField() {
         cout << endl;
         cout << "Please select which field in " << row << " row: ";
         cin >> field;
-        rv=b.RevealdField(field,row);
+        rv=b.RevealdField(row,field);
     }while(not rv);
 
 
@@ -38,9 +38,9 @@ void Player::ToggleFlag() {
         cout << "To toggle flag please select a row: ";
         cin >> row;
         cout << endl;
-        cout << "Please select which field in " << row << " row: ";
+        cout << "Please select which field in " << row<< " row: ";
         cin >> field;
-        rv=b.ToggleFlag(field,row);
+        rv=b.ToggleFlag(row,field);
     }while(not rv);
 
 }

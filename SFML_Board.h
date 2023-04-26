@@ -17,13 +17,19 @@
  */
 class MSSFMLView {
     MinesweeperBoard & b1;
-    //SFMLGameMenu & m1;
-    void showFlag(sf::RenderWindow & window, int width, int height,sf::Texture & Flag);
-    bool showBomb(sf::RenderWindow & window,int width,int height,sf::Texture & Bomb);
-    bool MineCount(sf::RenderWindow & window,int width,int height, sf::Font & font);
-    void SetField(sf::RenderWindow & window,sf::RectangleShape & field,sf::Font & font,sf::Texture & Flag,sf::Texture & Bomb);
+    sf::Font font;
+    sf::Texture background;
+    sf::Texture Bomb;
+    sf::Texture Flag;
 
+
+    void showFlag(sf::RenderWindow & window, int width, int height);
+    bool showBomb(sf::RenderWindow & window,int width,int height);
+    bool MineCount(sf::RenderWindow & window,int width,int height);
+    void SetField(sf::RenderWindow & window,sf::RectangleShape & field);
     void Draw_Background(sf::RenderWindow & win);
+    void Lose_Comunication(sf::RenderWindow & win);
+    void Won_Comunication(sf::RenderWindow & win);
 public:
    int Field_width(int width) const;
    int Field_height(int height) const;

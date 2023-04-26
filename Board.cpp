@@ -94,11 +94,18 @@ bool MinesweeperBoard::RevealdField(int row, int col) {
 bool MinesweeperBoard::ToggleFlag(int row, int col) {
 
 
-  if(FieldInfo(row,col)!=95)
-      return false;
+    if (FieldInfo(row, col) == 95) {
 
-    plansza[col][row].HasFlag=true;
-    return true;
+        plansza[col][row].HasFlag = true;
+        return true;
+    }
+
+    if (FieldInfo(row, col) == 70) {
+        plansza[col][row].HasFlag = false;
+        return true;
+    }
+
+    return false;
 }
 
 void MinesweeperBoard::SetSize(GameMode Difficulty) {
@@ -165,7 +172,7 @@ STAN MinesweeperBoard::getGameState() const{
     for(int i=0;i<height;i++){
         for(int j=0;j<width;j++) {
             if(FieldInfo(i,j)==88) {
-                cout<<"You lost :("<<endl;
+
                 return Lose;
             }
             if(plansza[j][i].isReveald && !plansza[j][i].HasMine) n++;
@@ -173,7 +180,7 @@ STAN MinesweeperBoard::getGameState() const{
     }
 
     if(n==freeFeild){
-        cout<<"You win";
+
         return Win;
     }
     return Running;

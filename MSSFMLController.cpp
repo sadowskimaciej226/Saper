@@ -13,7 +13,7 @@ void MSSFMLController::play() {
 
     sf::RenderWindow window(sf::VideoMode(get_window_width(), get_window_height()), "Saper");
     window.setVerticalSyncEnabled(false);
-    window.setFramerateLimit(30);
+    window.setFramerateLimit(10);
 
     while (window.isOpen()) {
         sf::Event event{};
@@ -24,16 +24,14 @@ void MSSFMLController::play() {
                 window.close();
         }
 
-
-       if(sf::Mouse::isButtonPressed(sf::Mouse::Left))
-       {
-           B.RevealdField(get_row_number(window), get_col_number(window));
-       }
-        if(sf::Mouse::isButtonPressed(sf::Mouse::Right))
-        {
+    if(B.getGameState()==Running) {
+        if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+            B.RevealdField(get_row_number(window), get_col_number(window));
+        }
+        if (sf::Mouse::isButtonPressed(sf::Mouse::Right)) {
             B.ToggleFlag(get_row_number(window), get_col_number(window));
         }
-
+    }
 
         G.View(window);
        window.display();
@@ -60,6 +58,7 @@ int MSSFMLController::get_row_number(sf::RenderWindow &window) const {
     int col=(py-30)/30;
     return col;
 }
+
 
 
 
